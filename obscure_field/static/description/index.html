@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Obscure Field</title>
+    <style>
+        :root {
+            --ink: #15202b;
+            --muted: #5f6f7c;
+            --line: #d9e2e7;
+            --teal: #0f766e;
+            --teal-dark: #115e59;
+            --accent: #f59e0b;
+            --soft: #f6faf9;
+            --code: #0f172a;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            color: var(--ink);
+            background: #ffffff;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+            line-height: 1.55;
+        }
+
+        .page {
+            max-width: 1040px;
+            margin: 0 auto;
+            padding: 0 24px 48px;
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            gap: 28px;
+            align-items: center;
+            padding: 44px 0 36px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .hero img {
+            width: 112px;
+            height: 112px;
+            border-radius: 24px;
+        }
+
+        h1 {
+            margin: 0 0 10px;
+            font-size: 40px;
+            line-height: 1.12;
+            letter-spacing: 0;
+        }
+
+        .lead {
+            margin: 0;
+            max-width: 760px;
+            color: var(--muted);
+            font-size: 18px;
+        }
+
+        .badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 18px;
+        }
+
+        .badge {
+            border: 1px solid #c9ddd8;
+            color: var(--teal-dark);
+            background: var(--soft);
+            padding: 6px 10px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        section {
+            padding: 34px 0;
+            border-bottom: 1px solid var(--line);
+        }
+
+        h2 {
+            margin: 0 0 14px;
+            font-size: 26px;
+            letter-spacing: 0;
+        }
+
+        h3 {
+            margin: 24px 0 10px;
+            font-size: 18px;
+            letter-spacing: 0;
+        }
+
+        p {
+            margin: 0 0 14px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 16px;
+        }
+
+        .feature {
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            padding: 18px;
+            background: #ffffff;
+        }
+
+        .feature strong {
+            display: block;
+            margin-bottom: 7px;
+            color: var(--teal-dark);
+        }
+
+        .feature p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .feature-list {
+            margin: 0;
+            padding-left: 22px;
+        }
+
+        .feature-list li {
+            margin: 0 0 10px;
+        }
+
+        .feature-list li:last-child {
+            margin-bottom: 0;
+        }
+
+        pre {
+            margin: 14px 0 0;
+            padding: 18px;
+            overflow: auto;
+            color: #e5edf4;
+            background: var(--code);
+            border-radius: 8px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        code {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 14px;
+            font-size: 14px;
+        }
+
+        th,
+        td {
+            border: 1px solid var(--line);
+            padding: 12px;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        th {
+            color: var(--teal-dark);
+            background: var(--soft);
+        }
+
+        .note {
+            border-left: 4px solid var(--accent);
+            padding: 12px 16px;
+            background: #fffbeb;
+            color: #65460b;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .muted {
+            color: var(--muted);
+        }
+
+        figure {
+            margin: 18px 0 0;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            overflow: hidden;
+            background: #ffffff;
+        }
+
+        figure img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        figcaption {
+            padding: 10px 14px;
+            color: var(--muted);
+            background: var(--soft);
+            border-top: 1px solid var(--line);
+            font-size: 14px;
+        }
+
+        @media (max-width: 760px) {
+            .page {
+                padding: 0 18px 36px;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 18px;
+            }
+
+            h1 {
+                font-size: 32px;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+<main class="page">
+    <header class="hero">
+        <div>
+            <br>
+            <h1>Obscure Field</h1>
+            <p class="lead">
+                Add a Char-compatible Odoo field for credentials that must not
+                appear raw in form view network responses, read APIs, or exports.
+            </p>
+        </div>
+    </header>
+
+    <section>
+        <h2>The Problem</h2>
+        <p>
+            A common implementation mistake is to store credentials such as
+            passwords, API keys, client secrets, and access tokens in regular
+            character fields, then only hide them visually in the form view.
+            The value may look protected to the user, but the browser can still
+            receive the original value behind the scenes.
+        </p>
+        <p>
+            For example, an integration module might define credential fields
+            as plain <code>fields.Char</code> values:
+        </p>
+        <pre><code>from odoo import fields, models
+
+
+class Marketplace(models.Model):
+    _name = 'marketplace'
+
+    client_id = fields.Char(string='Client ID')
+    client_secret = fields.Char(string='Client Secret')
+    refresh_token = fields.Char(string='Refresh Token')
+    access_token = fields.Char(string='Access Token')</code></pre>
+
+        <p>
+            The form view may then apply the password option to mask the value
+            on screen:
+        </p>
+        <pre><code>&lt;group&gt;
+    &lt;field name="client_id"/&gt;
+    &lt;field name="client_secret" password="True"/&gt;
+    &lt;field name="refresh_token" password="True"/&gt;
+    &lt;field name="access_token" password="True"/&gt;
+&lt;/group&gt;</code></pre>
+
+        <figure>
+            <img src="browser-field-mask.png" style="max-width: 70%;" alt="Odoo form view showing credential fields masked in the browser"/>
+            <figcaption>Resulting form view with credential fields visually masked.</figcaption>
+        </figure>
+
+        <p>
+            This is not enough. Inspecting the browser network tab can still
+            reveal the sensitive values in the response payload, even though the
+            form input displays a masked value.
+        </p>
+
+        <figure>
+            <img src="browser-network-tab.png" style="max-width: 70%" alt="Chrome network response showing sensitive credential data in plain text"/>
+            <figcaption>Chrome inspector response tab showing sensitive data returned in plain text.</figcaption>
+        </figure>
+
+        <p>
+            Obscure Field fixes the problem at the field layer. Only fields
+            declared as <code>fields.Obscure</code> are masked in read,
+            web_read, and export responses.
+        </p>
+    </section>
+
+    <section>
+        <h2>Key Features</h2>
+        <ul class="feature-list">
+            <li>Declare sensitive values with <code>fields.Obscure</code> instead of regular <code>fields.Char</code>.</li>
+            <li>Return <code>******</code> for populated obscure fields in <code>read</code> and <code>web_read</code> payloads.</li>
+            <li>Mask exported values to reduce accidental CSV or XLSX credential disclosure.</li>
+            <li>Keep the real stored value available to trusted server-side Python code through <code>record.field</code>.</li>
+            <li>Ignore all-star placeholder writes, so saving a form does not overwrite the existing credential.</li>
+            <li>Apply masking only to fields explicitly declared as <code>fields.Obscure</code>.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Example Code</h2>
+        <p>Declare sensitive fields with <code>fields.Obscure</code>:</p>
+        <pre><code>from odoo import fields, models
+
+
+class Marketplace(models.Model):
+    _name = 'marketplace'
+
+    client_secret = fields.Obscure(string='Client Secret')
+    refresh_token = fields.Obscure(string='Refresh Token')
+    access_token = fields.Obscure(string='API Access Token')</code></pre>
+
+        <h3>Backend usage</h3>
+        <pre><code>def action_connect(self):
+    secret = self.client_secret
+    token = self.access_token
+    # Use the real values for trusted backend logic.</code></pre>
+
+        <h3>Response payload</h3>
+        <pre><code>{
+    "client_secret": "******",
+    "refresh_token": "******",
+    "access_token": "******"
+}</code></pre>
+    </section>
+
+    <section>
+        <h2>Behavior</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Operation</th>
+                <th>Result</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><code>record.client_secret</code></td>
+                <td>Returns the real value to server-side Python code.</td>
+            </tr>
+            <tr>
+                <td><code>read</code> / <code>web_read</code></td>
+                <td>Returns <code>******</code> when the field has a value.</td>
+            </tr>
+            <tr>
+                <td>Export</td>
+                <td>Returns a masked value instead of the stored credential.</td>
+            </tr>
+            <tr>
+                <td><code>write({'client_secret': '******'})</code></td>
+                <td>Ignored as an unchanged placeholder.</td>
+            </tr>
+            <tr>
+                <td><code>write({'client_secret': 'new-secret'})</code></td>
+                <td>Saves the new value.</td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section>
+        <h2>Important Limits</h2>
+        <p class="note">
+            This module currently hides values from read/export payloads. It does
+            not encrypt values at rest and it does not replace Odoo access
+            control, record rules, or proper group permissions.
+        </p>
+    </section>
+</main>
+</body>
+</html>
