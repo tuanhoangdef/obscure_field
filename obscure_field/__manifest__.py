@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Obscure Field',
-    'version': '18.0.1.0.0',
+    'version': '19.0.1.0.0',
     'category': 'Technical',
     'summary': 'Store sensitive character fields without exposing values in RPC/read/export responses',
     'description': 'Add fields.Obscure for sensitive credentials that should be masked in Odoo read, web_read, and export payloads.',
@@ -14,7 +14,7 @@
     'images': [
         'static/description/icon.png',
     ],
-    'website': 'https://github.com/tuanhoangdef/obscure_field/tree/18.0/',
+    'website': 'https://github.com/tuanhoangdef/obscure_field/tree/19.0/',
     'installable': True,
     'application': False,
     'auto_install': False,
